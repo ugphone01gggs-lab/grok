@@ -1,0 +1,39 @@
+name: Build Geode Mod
+
+on:
+  push:
+    branches:
+      - "**" # รันทุกครั้งที่มีการ push โค้ด
+  workflow_dispatch: # เปิดให้กดรันเองมือได้ด้วย
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - name: Windows
+            os: windows-latest
+          - name: Android64
+            os: ubuntu-latest
+            target: Android64
+
+    name: ${{ matrix.config.name }}
+    runs-on: ${{ matrix.config.os }}
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Build the mod
+      uses: geode-sdk/build-geode-mod@main
+      with:
+        combine: true
+        target: ${{ matrix.config.target }}
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: Geode-Mod-Output
+        path: |
+          build/**/*.geode
+          build/*.geode
