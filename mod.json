@@ -1,0 +1,101 @@
+{
+	"geode": "4.4.0",
+	"gd": {
+		"win": "2.2074",
+		"android": "2.2074"
+	},
+	"version": "v1.3.0",
+	"id": "apex.buffer",
+	"name": "ApexBuffer",
+	"developer": "Apex",
+	"description": "Smart adaptive input buffer. Predicts trajectories and delays inputs to maximize survival chance. Designed for both PC and mobile.",
+	"repository": "",
+	"issues": "",
+	"tags": ["gameplay", "utility", "offline"],
+	"settings": {
+		"enabled": {
+			"type": "bool",
+			"name": "Enable ApexBuffer",
+			"description": "เปิด/ปิดการทำงานของ buffer",
+			"default": true
+		},
+		"practice-only": {
+			"type": "bool",
+			"name": "Practice Mode Only",
+			"description": "เปิดเฉพาะใน Practice Mode เท่านั้น",
+			"default": true
+		},
+		"stage": {
+			"type": "int",
+			"name": "Stage (Max Delay Ticks)",
+			"description": "ค่าความ aggressive สูงสุด (ticks). 4 ticks ≈ 1 frame ที่ 60fps. แนะนำเริ่มที่ 12-20",
+			"default": 16,
+			"min": 0,
+			"max": 48
+		},
+		"wave-stage": {
+			"type": "int",
+			"name": "Wave Stage (Max Delay)",
+			"description": "Max delay เฉพาะตอนเป็น Wave",
+			"default": 12,
+			"min": 0,
+			"max": 32
+		},
+		"aggression": {
+			"type": "float",
+			"name": "Aggression",
+			"description": "ความกล้าในการ delay (0.0 = อนุรักษ์นิยม, 1.0 = aggressive สูงสุด)",
+			"default": 0.65,
+			"min": 0.0,
+			"max": 1.0
+		},
+		"auto-adapt": {
+			"type": "bool",
+			"name": "Auto Adapt",
+			"description": "ปรับ stage และ aggression อัตโนมัติตามจุดที่ตายบ่อย",
+			"default": true
+		},
+		"min-confidence": {
+			"type": "float",
+			"name": "Minimum Confidence",
+			"description": "ถ้า prediction มั่นใจต่ำกว่าค่านี้ จะไม่ delay (ลดโอกาส delay แล้วตาย)",
+			"default": 0.55,
+			"min": 0.1,
+			"max": 0.95
+		},
+		"horizon": {
+			"type": "int",
+			"name": "Lookahead Horizon (ticks)",
+			"description": "ระยะที่ ghost มองไปข้างหน้า",
+			"default": 100,
+			"min": 40,
+			"max": 200
+		},
+		"wave-horizon": {
+			"type": "int",
+			"name": "Wave Horizon",
+			"description": "ระยะ lookahead เฉพาะ Wave",
+			"default": 60,
+			"min": 20,
+			"max": 120
+		},
+		"orb-smart": {
+			"type": "bool",
+			"name": "Smart Orb Prediction",
+			"description": "ลองทั้งกดและไม่กด orb แล้วเลือกทางที่ดีกว่า",
+			"default": true
+		},
+		"show-status": {
+			"type": "bool",
+			"name": "Show Status Text",
+			"description": "แสดงข้อความสถานะบนหน้าจอขณะเล่น",
+			"default": true
+		},
+		"debug-log": {
+			"type": "bool",
+			"name": "Debug Log",
+			"description": "เขียน log ลงไฟล์ (สำหรับดีบัก)",
+			"default": false
+		}
+	}
+}
